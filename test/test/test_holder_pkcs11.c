@@ -73,7 +73,6 @@ INCLUDE(st_c_test_find_objects_info_valid_001)
 INCLUDE(st_c_test_find_objects_init_invalid_002)
 INCLUDE(st_c_test_find_objects_invalid_003)
 
-INCLUDE(st_c_test_create_objects_info_valid_001)
 
 //not built file were, None
 void make_it_fail()
@@ -88,7 +87,7 @@ int CreateTestSuite(int (*fptrCUHelper)(sTestSuite_d*,int))
 	{
 		/////////////////////Add test cases in respective suites/////////////////////
 		START_SUITE(optiga_pkcs_11_system_test_cases)//name of the suite
-#if 0
+
 			ADDTEST(st_c_initialize_finalize_valid_001)
 			ADDTEST(st_c_initialize_invalid_002)
 			ADDTEST(st_c_finalize_invalid_003)
@@ -157,8 +156,7 @@ int CreateTestSuite(int (*fptrCUHelper)(sTestSuite_d*,int))
 			ADDTEST(st_c_test_find_objects_info_valid_001)
 			ADDTEST(st_c_test_find_objects_init_invalid_002)
 			ADDTEST(st_c_test_find_objects_invalid_003)
-#endif
-			ADDTEST(st_c_test_create_objects_info_valid_001)
+
         END_SUITE
         
 		/////////////////////////////////////////////////////////////////////////////
