@@ -28,6 +28,5 @@ set(TRUSTM_CORE_SRCS
 )
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/linux_i2c.cmake)
-include(${CMAKE_CURRENT_SOURCE_DIR}/linux_libusb.cmake)
 
 

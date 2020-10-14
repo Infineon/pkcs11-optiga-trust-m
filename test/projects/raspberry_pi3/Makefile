@@ -41,12 +41,12 @@ all: $(wolfssl) $(sample)
 
 #Source code root directory from the directory of this make file
 ROOT_DIR = ../../
-
+PKCS11_INCLUDE_DIR = ../../../optiga-trust-m/examples/utilities
 #Bin directory..
 BIN_DIR = ./lib
 
 #Header file dependencies
-INCLUDES = -I$(ROOT_DIR)library/include -I$(ROOT_DIR)cunit_framework/include
+INCLUDES = -I$(PKCS11_INCLUDE_DIR)/include -I$(ROOT_DIR)cunit_framework/include
 
 #Compiler flags
 CFLAGS = $(INCLUDES) -g -Wall -c -DWOLFSSL_RPI3_OPTIGA
