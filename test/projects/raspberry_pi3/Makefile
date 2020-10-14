@@ -72,7 +72,6 @@ $(ROOT_DIR)test/st_C_GetTokenInfo.c \
 $(ROOT_DIR)test/st_C_GetMechanismInfo.c \
 $(ROOT_DIR)test/st_C_GetAttributeValue.c \
 $(ROOT_DIR)test/st_C_FindObjects.c \
-$(ROOT_DIR)test/st_C_Create_and_DestroyObjects.c \
 $(ROOT_DIR)main/main.c \
 
 #Make Platform Crypto layer
