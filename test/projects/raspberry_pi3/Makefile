@@ -51,10 +51,10 @@ INCLUDES = -I$(PKCS11_INCLUDE_DIR)/include -I$(ROOT_DIR)cunit_framework/include
 #Compiler flags
 CFLAGS = $(INCLUDES) -g -Wall -c -DWOLFSSL_RPI3_OPTIGA
 LDFLAGS	= -L/usr/local/lib
-LDLIBS  = -lrt -lm -lpthread -lmbedtls -lmbedx509 -lmbedcrypto -lssl -lcrypto -lcunit -loptigatrust-i2c-linux-pkcs11
+LDLIBS  = -lrt -lm -lpthread -lssl -lcrypto -lcunit -loptigatrust-i2c-linux-pkcs11
 
 #Binary output file name
-TrustM_Sample_Name = OPTIGA_Trust_M1_RPI3_SystemTest
+TrustM_Sample_Name = OPTIGA_Trust_M_PKCS11_Test
 
 #Actual source code file to be built
 SRC = \
