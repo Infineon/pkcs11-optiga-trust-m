@@ -59,11 +59,15 @@ Note: Enable recursive option for git clone as optiga-trust-m is a sub-module.
 
 ## Build PKCS#11 library with OPTIGA™ Trust M
 * Create a directory with name **build** at *cloned_repo*
+
 		$ mkdir build
 * Navigate inside build folder and type cmake ..
+
 		$ cd build
 		$ cmake ..
+
 * Build the project
+
 		$ make
 	
 	Note: After build is successful a directory with name **lib** gets created at *cloned_repo*.	
@@ -71,12 +75,19 @@ Note: Enable recursive option for git clone as optiga-trust-m is a sub-module.
 
 ## Build test project
 * Navigate to folder *cloned_repo*/test/projects/raspberry_pi3/
+
 		$ cd test/projects/raspberry_pi3/
+
 * Create a directory with name **lib**
+
 		$ mkdir lib
+
 * Copy the file liboptigatrust-i2c-linux-pkcs11.so from *cloned_repo*/lib to  *cloned_repo*/test/projects/raspberry_pi3/lib
+
 		$ sudo cp -r ../../../lib/ /lib/
+
 * Build the project:	
+
 		$ make
 
 # Running Test 
