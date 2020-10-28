@@ -24,7 +24,6 @@ set(TRUSTM_CORE_SRCS
     ${TRUSTM_PATH}/optiga/comms/optiga_comms_ifx_i2c.c
     ${TRUSTM_PATH}/examples/utilities/pkcs11_trustm.c
     ${TRUSTM_PATH}/examples/utilities/ecdsa_utils.c
-    ${TRUSTM_PATH}/examples/optiga/usecases/example_pair_host_and_optiga_using_pre_shared_secret.c
 )
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/linux_i2c.cmake)
