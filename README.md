@@ -12,7 +12,9 @@ Install the build dependendencies for the system:
 ## Update the system
 
 	$ sudo apt-get update
+## Install cmake
 
+	$ sudo apt-get install cmake
 ## Install CUnit library for assert in system test
 
 	$ sudo apt-get install libcunit1-dev
