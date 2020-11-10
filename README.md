@@ -84,7 +84,7 @@ Note: Enable recursive option for git clone as optiga-trust-m is a sub-module.
 
 		$ mkdir lib
 
-* Copy the file liboptigatrust-i2c-linux-pkcs11.so from *cloned_repo*/lib to  *cloned_repo*/test/projects/raspberry_pi3/lib
+* Copy compiled liboptigatrust-i2c-linux-pkcs11.so to /lib/
 
 		$ sudo cp -r ../../../lib/*so /lib/
 
