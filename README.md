@@ -86,7 +86,7 @@ Note: Enable recursive option for git clone as optiga-trust-m is a sub-module.
 
 * Copy the file liboptigatrust-i2c-linux-pkcs11.so from *cloned_repo*/lib to  *cloned_repo*/test/projects/raspberry_pi3/lib
 
-		$ cp ../../../lib/*so lib/
+		$ sudo cp -r ../../../lib/*so /lib/
 
 * Build the project:	
 
@@ -96,7 +96,7 @@ Note: Enable recursive option for git clone as optiga-trust-m is a sub-module.
 
 On the directory location *cloned_repo*/test/projects/raspberry_pi3/, run command
 
-	$ ./lib/OPTIGA_Trust_M_PKCS11_Test
+	$ sudo ./lib/OPTIGA_Trust_M_PKCS11_Test
 
 
 This will trigger the system test to start running and populates the system test result on console.
