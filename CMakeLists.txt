@@ -26,6 +26,7 @@ set(TRUSTM_CORE_SRCS
     ${TRUSTM_PATH}/examples/utilities/ecdsa_utils.c
 )
 
+include(${CMAKE_CURRENT_SOURCE_DIR}/linux_libusb.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/linux_i2c.cmake)
 
 

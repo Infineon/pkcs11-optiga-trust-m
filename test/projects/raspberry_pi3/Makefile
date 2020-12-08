@@ -30,9 +30,9 @@
 #Include build congiguration, compiler to be used, file name/directory definitions
 -include Config.mk
 
-.PHONY: all $(wolfssl) $(sample)
+.PHONY: all $(sample_libusb) $(sample_i2c)
 
-all: $(wolfssl) $(sample)
+all: $(wolfssl) $(sample_libusb) $(sample_i2c)
 
 #Make application note
 
@@ -43,7 +43,7 @@ all: $(wolfssl) $(sample)
 ROOT_DIR = ../../
 PKCS11_INCLUDE_DIR = ../../../optiga-trust-m/examples/utilities
 #Bin directory..
-BIN_DIR = ./lib
+BIN_DIR = ./lib/
 
 #Header file dependencies
 INCLUDES = -I$(PKCS11_INCLUDE_DIR)/include -I$(ROOT_DIR)cunit_framework/include
@@ -51,10 +51,11 @@ INCLUDES = -I$(PKCS11_INCLUDE_DIR)/include -I$(ROOT_DIR)cunit_framework/include
 #Compiler flags
 CFLAGS = $(INCLUDES) -g -Wall -c -DWOLFSSL_RPI3_OPTIGA
 LDFLAGS	= -L/usr/local/lib
-LDLIBS  = -lrt -lm -lpthread -lssl -lcrypto -lcunit -loptigatrust-i2c-linux-pkcs11
+LDLIBS  = -lrt -lm -lpthread -lssl -lcrypto -lcunit
 
 #Binary output file name
-TrustM_Sample_Name = OPTIGA_Trust_M_PKCS11_Test
+TrustM_Sample_USB_Name = OPTIGA_Trust_M_PKCS11_Test_usbdongle
+TrustM_Sample_i2c_Name = OPTIGA_Trust_M_PKCS11_Test_i2c
 
 #Actual source code file to be built
 SRC = \
@@ -84,13 +85,17 @@ $(COBJS) : %.o : %.c
 	$(CC) $(CFLAGS) $<
 	mv *.o $(BIN_DIR)
 	
-all: $(COBJS) sample
+all: $(COBJS) sample_libusb sample_i2c
 
-sample:
-	$(CC) -o "$(BIN_DIR)/$(TrustM_Sample_Name)" "$(BIN_DIR)/"*.o -L$(BIN_DIR) $(LDLIBS) 
+sample_libusb:
+	$(CC) -o "$(BIN_DIR)/$(TrustM_Sample_USB_Name)" "$(BIN_DIR)/"*.o -L$(BIN_DIR) $(LDLIBS) -loptigatrust-libusb-linux-pkcs11
+	
+sample_i2c:
+	$(CC) -o "$(BIN_DIR)/$(TrustM_Sample_i2c_Name)" "$(BIN_DIR)/"*.o -L$(BIN_DIR) $(LDLIBS) -loptigatrust-i2c-linux-pkcs11
 
 
 
 clean:
 	$(CLEAN) "$(BIN_DIR)/"*.o
-	$(CLEAN) "$(BIN_DIR)/$(TrustM_Sample_Name)"
+	$(CLEAN) "$(BIN_DIR)/"OPTIGA_Trust_M_PKCS11_Test_libusb
+	$(CLEAN) "$(BIN_DIR)/"OPTIGA_Trust_M_PKCS11_Test_i2c

@@ -20,18 +20,19 @@ if(UNIX)
 		${TRUSTM_PATH}/pal/libusb/pal_os_event.c
 		${TRUSTM_PATH}/pal/libusb/pal_os_lock.c
 		${TRUSTM_PATH}/pal/libusb/pal_os_memory.c 
-		${TRUSTM_PATH}/pal/libusb/pal_os_timer.c   
+		${TRUSTM_PATH}/pal/libusb/pal_os_timer.c
+		${TRUSTM_PATH}/pal/pal_crypt_openssl.c
 	)
 	set(TRUSTM_LIBUSB_INC ${TRUSTM_PATH}/pal/libusb/include)
 	add_library(${TARGET_LIBUSB_SHLIB} SHARED ${TRUSTM_CORE_SRCS} ${TRUSTM_LIBUSB_SRCS})
 	target_include_directories(${TARGET_LIBUSB_SHLIB}  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 													   ${LIBUSB_INCLUDE_DIR}
 													   ${TRUSTM_LIBUSB_INC})
-	target_compile_definitions(${TARGET_LIBUSB_SHLIB} PRIVATE  -DIFX_I2C_FRAME_SIZE=55 -DUSE_LIBUSB_PAL -DPAL_OS_HAS_EVENT_INIT)
+	target_compile_definitions(${TARGET_LIBUSB_SHLIB} PRIVATE -DIFX_I2C_FRAME_SIZE=45 -DUSE_LIBUSB_PAL -DPAL_OS_HAS_EVENT_INIT -DOPTIGA_COMMS_DEFAULT_RESET_TYPE=1)
 	if(HAS_LIBUSB)
 		target_link_libraries(${TARGET_LIBUSB_SHLIB} usb-1.0)
 	endif(HAS_LIBUSB)
-	target_link_libraries(${TARGET_LIBUSB_SHLIB} rt)
+	target_link_libraries(${TARGET_LIBUSB_SHLIB} rt m)
 
 	set_target_properties( ${TARGET_LIBUSB_SHLIB}
 		PROPERTIES
