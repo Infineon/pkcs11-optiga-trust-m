@@ -1,4 +1,4 @@
-# A PKCS#11 Interface implementation for OPTIGA™ Trust M
+# A PKCS#11 Interface implementation for </br>OPTIGA™ Trust M
 
 PKCS #11 is a Public-Key Cryptography Standard that defines a standard method to
 access cryptographic services from tokens/ devices such as hardware security
@@ -41,6 +41,10 @@ Install the build dependendencies for the system:
 
 # Hardware connection between OPTIGA™ Trust M and Raspberry Pi 3
 
+This APpNote does support two hardware types:
+
+1. USB Dongle. In this case you just need to plug it into one of available USB slots on your Raspberry Pi board
+2. I2C Connection
 Below table shows the I2C connection between the OPTIGA™ Trust M and Raspberry Pi 3.
 
 | No       			| Description		| Pin #    | Pin Description |
@@ -96,7 +100,11 @@ Note: Enable recursive option for git clone as optiga-trust-m is a sub-module.
 
 On the directory location *cloned_repo*/test/projects/raspberry_pi3/, run command
 
-	$ sudo ./lib/OPTIGA_Trust_M_PKCS11_Test
+	$ sudo ./lib/OPTIGA_Trust_M_PKCS11_Test_usbdongle
+
+if you use one of Trust M USB dongles, otherwise
+
+	$ sudo ./lib/OPTIGA_Trust_M_PKCS11_Test_i2c
 
 
 This will trigger the system test to start running and populates the system test result on console.
