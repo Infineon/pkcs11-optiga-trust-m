@@ -262,7 +262,7 @@ void st_c_encrypt_decrypt_rsa_2048_valid_002() {
 		}
 
 		CU_ASSERT_EQUAL( deciphertext_len, plaintext_len );					
-		if (ciphertext_len != 128) {
+		if (deciphertext_len != plaintext_len) {
 			printf("C_Decrypt deciphertext_len mismatch:%x at line Number : %d\n",ciphertext_len, __LINE__);
 			break;		
 		}	
