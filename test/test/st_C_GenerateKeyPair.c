@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pkcs11.h"
+#include "pkcs11_optiga_trustm.h"
 #include "c_unit_helper.h"
 
 extern void st_c_test_initialize();
@@ -25,7 +25,7 @@ void st_c_generate_keypair_ecc_p_256_valid_001() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
+	CK_UTF8CHAR label[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
     CK_BYTE ec_params[] = {
         0x06, 0x08, 0x2a, 0x86, 0x48,
         0xce, 0x3d, 0x03, 0x01, 0x07
@@ -108,7 +108,7 @@ void st_c_generate_keypair_ecc_p_384_valid_002() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
+	CK_UTF8CHAR label[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
 	//MBEDTLS_OID_EC_GRP_SECP384R1
     CK_BYTE ec_params[] = {
         0x06, 0x05, 0x2B, 0x81, 0x04, 0x00, 0x22
@@ -194,7 +194,7 @@ void st_c_generate_keypair_ecc_p_521_valid_003() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
+	CK_UTF8CHAR label[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
     CK_BYTE ec_params[] = {
         0x06, 0x05, 0x2B, 0x81, 0x04, 0x00, 0x23
     };
@@ -278,7 +278,7 @@ void st_c_generate_keypair_ecc_invalid_004() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
+	CK_UTF8CHAR label[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
     CK_BYTE ec_params[] = {
         0x06, 0x08, 0x2a, 0x86, 0x48,
         0xce, 0x3d, 0x03, 0x01, 0x07
@@ -376,7 +376,7 @@ void st_c_generate_keypair_ecc_invalid_missing_attribute_005() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
+	CK_UTF8CHAR label[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
     CK_BYTE ec_params[] = {
         0x06, 0x08, 0x2a, 0x86, 0x48,
         0xce, 0x3d, 0x03, 0x01, 0x07
@@ -459,8 +459,8 @@ void st_c_generate_keypair_rsa_1024_valid_001() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
@@ -535,8 +535,8 @@ void st_c_generate_keypair_rsa_2048_valid_002() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 2048;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
 	
     CK_ATTRIBUTE pub[] = {
@@ -612,8 +612,8 @@ void st_c_generate_keypair_rsa_1024_invalid_003() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_EC;		
 	
     CK_ATTRIBUTE pub[] = {
@@ -690,8 +690,8 @@ void st_c_generate_keypair_rsa_1024_invalid_missing_attribute_004() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
 	
     CK_ATTRIBUTE pub[6] = {

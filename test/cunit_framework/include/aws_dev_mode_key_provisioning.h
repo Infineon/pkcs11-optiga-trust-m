@@ -40,14 +40,15 @@
 #define _AWS_DEV_MODE_KEY_PROVISIONING_H_
 
 
-#include "pkcs11.h"
+#include "pkcs11_optiga_trustm.h"
+
 #include "optiga/common/optiga_lib_types.h"
 
-#define pkcs11testLABEL_DEVICE_PUBLIC_KEY_FOR_TLS        pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS
-#define pkcs11testLABEL_DEVICE_PRIVATE_KEY_FOR_TLS       pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS
-#define pkcs11testLABEL_DEVICE_CERTIFICATE_FOR_TLS       pkcs11configLABEL_DEVICE_CERTIFICATE_FOR_TLS
-#define pkcs11testLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS   pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS
-#define pkcs11testLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS    pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS
+#define pkcs11testLABEL_DEVICE_PUBLIC_KEY_FOR_TLS        LABEL_DEVICE_PUBLIC_KEY_FOR_TLS
+#define pkcs11testLABEL_DEVICE_PRIVATE_KEY_FOR_TLS       LABEL_DEVICE_PRIVATE_KEY_FOR_TLS
+#define pkcs11testLABEL_DEVICE_CERTIFICATE_FOR_TLS       LABEL_DEVICE_CERTIFICATE_FOR_TLS
+#define pkcs11testLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS   LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS
+#define pkcs11testLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS    LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS
 
 #define pkcs11testSLOT_NUMBER 0
 
@@ -118,8 +119,8 @@
  *
  * If private key import is not supported, this value should be defined 0 in aws_pkcs11_config.h
  */
-#ifndef pkcs11configIMPORT_PRIVATE_KEYS_SUPPORTED
-    #define pkcs11configIMPORT_PRIVATE_KEYS_SUPPORTED    1
+#ifndef IMPORT_PRIVATE_KEYS_SUPPORTED
+    #define IMPORT_PRIVATE_KEYS_SUPPORTED    1
 #endif
 
 /* Length parameters for importing RSA-2048 private keys. */
@@ -350,10 +351,10 @@ CK_RV xProvisionGenerateKeyPairEC( CK_SESSION_HANDLE xSession,
  * supported on the port were erased from non-volatile memory.
  *
  * Destroys objects with the following labels, if applicable:
- *     pkcs11configLABEL_DEVICE_CERTIFICATE_FOR_TLS,
- *     pkcs11configLABEL_CODE_VERIFICATION_KEY,
- *     pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS,
- *     pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS
+ *     LABEL_DEVICE_CERTIFICATE_FOR_TLS,
+ *     LABEL_CODE_VERIFICATION_KEY,
+ *     LABEL_DEVICE_PRIVATE_KEY_FOR_TLS,
+ *     LABEL_DEVICE_PUBLIC_KEY_FOR_TLS
  *
  *   \param[in] xSession         A valid PKCS #11 session handle.
  *

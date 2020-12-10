@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pkcs11.h"
+#include "pkcs11_optiga_trustm.h"
 #include "c_unit_helper.h"
 
 /**

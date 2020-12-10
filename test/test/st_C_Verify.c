@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pkcs11.h"
+#include "pkcs11_optiga_trustm.h"
 #include "c_unit_helper.h"
 
 extern void st_c_test_initialize();
@@ -25,8 +25,8 @@ void st_c_verify_ecc_valid_001() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label_priv[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS; // 0xE0F1	
-	CK_UTF8CHAR label_pub[] = pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS; // 0xF1D2
+	CK_UTF8CHAR label_priv[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS; // 0xE0F1	
+	CK_UTF8CHAR label_pub[] = LABEL_DEVICE_PUBLIC_KEY_FOR_TLS; // 0xF1D2
     CK_BYTE ec_params[] = {
         0x06, 0x08, 0x2a, 0x86, 0x48,
         0xce, 0x3d, 0x03, 0x01, 0x07
@@ -161,8 +161,8 @@ void st_c_verify_ecc_invalid_no_verifyinit_002() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label_priv[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
-	CK_UTF8CHAR label_pub[] = pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS;
+	CK_UTF8CHAR label_priv[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
+	CK_UTF8CHAR label_pub[] = LABEL_DEVICE_PUBLIC_KEY_FOR_TLS;
     CK_BYTE ec_params[] = {
         0x06, 0x08, 0x2a, 0x86, 0x48,
         0xce, 0x3d, 0x03, 0x01, 0x07
@@ -290,8 +290,8 @@ void st_c_verify_ecc_invalid_sign_len_invalid_003() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label_priv[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
-	CK_UTF8CHAR label_pub[] = pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS;
+	CK_UTF8CHAR label_priv[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
+	CK_UTF8CHAR label_pub[] = LABEL_DEVICE_PUBLIC_KEY_FOR_TLS;
     CK_BYTE ec_params[] = {
         0x06, 0x08, 0x2a, 0x86, 0x48,
         0xce, 0x3d, 0x03, 0x01, 0x07
@@ -426,8 +426,8 @@ void st_c_verify_ecc_invalid_sign_invalid_004() {
     CK_BBOOL false = CK_FALSE;
     CK_BYTE id[] = "p11-templ-key-id-ecc";
     //CK_UTF8CHAR label[] = "p11-templ-key-label-ecc";
-	CK_UTF8CHAR label_priv[] = pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
-	CK_UTF8CHAR label_pub[] = pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS;
+	CK_UTF8CHAR label_priv[] = LABEL_DEVICE_PRIVATE_KEY_FOR_TLS;	
+	CK_UTF8CHAR label_pub[] = LABEL_DEVICE_PUBLIC_KEY_FOR_TLS;
     CK_BYTE ec_params[] = {
         0x06, 0x08, 0x2a, 0x86, 0x48,
         0xce, 0x3d, 0x03, 0x01, 0x07
@@ -564,8 +564,8 @@ void st_c_verify_rsa_1024_valid_001() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"
     CK_BYTE sha256_msg_hash[] = {
         0xcd, 0xd8, 0x92, 0x1d, 0xf0, 0xcd, 0x29, 0xba, 0x4b, 0x8b, 0x87, 0x12,
         0x15, 0x07, 0x46, 0xdf, 0xb1, 0x91, 0x50, 0x81, 0xf7, 0xd4, 0x9b, 0xd5,
@@ -691,8 +691,8 @@ void st_c_verify_rsa_2048_valid_002() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 2048;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"
     CK_BYTE sha256_msg_hash[] = {
         0xcd, 0xd8, 0x92, 0x1d, 0xf0, 0xcd, 0x29, 0xba, 0x4b, 0x8b, 0x87, 0x12,
         0x15, 0x07, 0x46, 0xdf, 0xb1, 0x91, 0x50, 0x81, 0xf7, 0xd4, 0x9b, 0xd5,
@@ -818,8 +818,8 @@ void st_c_verify_rsa_1024_invalid_no_verify_init_003() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"
     CK_BYTE sha256_msg_hash[] = {
         0xcd, 0xd8, 0x92, 0x1d, 0xf0, 0xcd, 0x29, 0xba, 0x4b, 0x8b, 0x87, 0x12,
         0x15, 0x07, 0x46, 0xdf, 0xb1, 0x91, 0x50, 0x81, 0xf7, 0xd4, 0x9b, 0xd5,
@@ -938,8 +938,8 @@ void st_c_verify_rsa_1024_invalid_sign_invalid_004() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"
     CK_BYTE sha256_msg_hash[] = {
         0xcd, 0xd8, 0x92, 0x1d, 0xf0, 0xcd, 0x29, 0xba, 0x4b, 0x8b, 0x87, 0x12,
         0x15, 0x07, 0x46, 0xdf, 0xb1, 0x91, 0x50, 0x81, 0xf7, 0xd4, 0x9b, 0xd5,

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pkcs11.h"
+#include "pkcs11_optiga_trustm.h"
 #include "c_unit_helper.h"
 
 extern void st_c_test_initialize();
@@ -26,8 +26,8 @@ void st_c_encrypt_decrypt_rsa_1024_valid_001() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
@@ -130,8 +130,8 @@ void st_c_encrypt_decrypt_rsa_1024_valid_001() {
 		}
 
 		CU_ASSERT_EQUAL( deciphertext_len, plaintext_len );					
-		if (deciphertext_len != plaintext_len) {
-			printf("C_Decrypt deciphertext_len mismatch:%x at line Number : %d\n",deciphertext_len, __LINE__);
+		if (ciphertext_len != 128) {
+			printf("C_Decrypt deciphertext_len mismatch:%x at line Number : %d\n",ciphertext_len, __LINE__);
 			break;		
 		}	
 
@@ -158,8 +158,8 @@ void st_c_encrypt_decrypt_rsa_2048_valid_002() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 2048;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
@@ -262,7 +262,7 @@ void st_c_encrypt_decrypt_rsa_2048_valid_002() {
 		}
 
 		CU_ASSERT_EQUAL( deciphertext_len, plaintext_len );					
-		if (deciphertext_len != plaintext_len) {
+		if (ciphertext_len != 128) {
 			printf("C_Decrypt deciphertext_len mismatch:%x at line Number : %d\n",ciphertext_len, __LINE__);
 			break;		
 		}	
@@ -290,8 +290,8 @@ void st_c_encrypt_init_ck_encrypt_false_invalid_003() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
@@ -386,8 +386,8 @@ void st_c_encrypt_rsa_1024_invalid_without_init_004() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
@@ -490,8 +490,8 @@ void st_c_decrypt_rsa_1024_invalid_without_init_005() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
@@ -608,8 +608,8 @@ void st_c_encrypt_rsa_1024_invalid_buffer_low_006() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
@@ -713,8 +713,8 @@ void st_c_decrypt_init_ck_decrypt_false_invalid_007() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
@@ -830,8 +830,8 @@ void st_c_encrypt_decrypt_rsa_1024_invalid_len_range_008() {
     CK_BYTE id[] = "p11-templ-key-id-rsa";
     CK_ULONG bits = 1024;
     CK_BYTE exp[] = { 0x01, 0x00, 0x01 }; //65537 in BN
-    CK_UTF8CHAR pub_label[] = pkcs11configLABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
-	CK_UTF8CHAR priv_label[] = pkcs11configLABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
+    CK_UTF8CHAR pub_label[] = LABEL_DEVICE_RSA_PUBLIC_KEY_FOR_TLS; // "0xF1E0"
+	CK_UTF8CHAR priv_label[] = LABEL_DEVICE_RSA_PRIVATE_KEY_FOR_TLS; // "0xE0FC"	
 	CK_KEY_TYPE KeyType = CKK_RSA;
     CK_ATTRIBUTE pub[] = {
         { CKA_KEY_TYPE,  &KeyType,         sizeof( KeyType )                           },		
