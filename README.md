@@ -27,6 +27,9 @@ Install the build dependendencies for the system:
 
 	$ sudo apt-get install libpthread-stubs0-dev
 
+## Install libusb installation
+
+	$ sudo apt-get install libusb-1.0-0-dev
 
 
 ## Enable the I2C interafce to communicate with OPTIGA™ Trust M:
