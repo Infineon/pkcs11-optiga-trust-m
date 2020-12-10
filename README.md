@@ -9,37 +9,27 @@ as the cryptographic token.
 
 Install the build dependendencies for the system:
 
-## Update the system
+1. Update the system
 
-	$ sudo apt-get update
-## Install cmake
-
-	$ sudo apt-get install cmake
-## Install CUnit library for assert in system test
-
-	$ sudo apt-get install libcunit1-dev
-
-## Install openSSL library used for PAL crypto operations
-
-	$ sudo apt-get install libssl-dev
-
-## Install pThread installation
-
-	$ sudo apt-get install libpthread-stubs0-dev
-
-## Install libusb installation
-
-	$ sudo apt-get install libusb-1.0-0-dev
-
-
-## Enable the I2C interafce to communicate with OPTIGA™ Trust M:
-
-	$ sudo raspi-config
-
-* Navigate to Interfacing Options.
-* Select P5 I2C and hit enter.
-* When the window to enable the I2C interface is appeared select yes.
-* Finish the configuration window.
+    ```bash
+    $ sudo apt-get update
+    ```
+2. PKCS11 dependencies
+    ```bash
+    $ sudo apt-get install cmake libssl-dev libusb-1.0-0-dev
+    ```	
+3. CUnit based system test dependencies
+    ```
+    $ sudo apt-get install libcunit1-dev libpthread-stubs0-dev
+    ```
+4. Enable the I2C interafce to communicate with OPTIGA™ Trust M:
+    ```
+    $ sudo raspi-config
+    ```
+    * Navigate to Interfacing Options.
+    * Select P5 I2C and hit enter.
+    * When the window to enable the I2C interface is appeared select yes.
+    * Finish the configuration window.
 
 
 # Hardware connection between OPTIGA™ Trust M and Raspberry Pi 3
