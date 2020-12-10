@@ -11,19 +11,19 @@ Install the build dependendencies for the system:
 
 1. Update the system
 
-    ```bash
+    ```console
     $ sudo apt-get update
     ```
 2. PKCS11 dependencies
-    ```bash
+    ```console
     $ sudo apt-get install cmake libssl-dev libusb-1.0-0-dev
     ```	
 3. CUnit based system test dependencies
-    ```
+    ```console
     $ sudo apt-get install libcunit1-dev libpthread-stubs0-dev
     ```
 4. Enable the I2C interafce to communicate with OPTIGA™ Trust M:
-    ```
+    ```console
     $ sudo raspi-config
     ```
     * Navigate to Interfacing Options.
@@ -100,7 +100,26 @@ if you use one of Trust M USB dongles, otherwise
 	$ sudo ./lib/OPTIGA_Trust_M_PKCS11_Test_i2c
 
 
-This will trigger the system test to start running and populates the system test result on console.
+This will trigger the system test to start running and populates the system test result on console. It usually takes around 26 seconds to cmplete all testcases, please be aware that no extra messages will be displayed during this time. YOu can find a generic test execution output below:
+
+```console
+pi@raspberrypi:~/git/pkcs11-optiga-trust-m/test/projects/raspberry_pi3 $ sudo ./lib/OPTIGA_Trust_M_PKCS11_Test_usbdongle
+
+ Added GAD_optiga_pkcs_11_system_test_cases_Tests Suite to the CUnit Registry.
+
+
+     CUnit - A unit testing framework for C - Version 2.1-3
+     http://cunit.sourceforge.net/
+
+
+
+Run Summary:    Type  Total    Ran Passed Failed Inactive
+              suites      1      1    n/a      0        0
+               tests     56     56     56      0        0
+             asserts    369    369    369      0      n/a
+
+Elapsed time =   26.820 seconds
+```
 
 Note : To run any specific test cases enable/disable the test cases under test folder at location *cloned_repo*/test/test/test_holder_pkcs11.c
 
