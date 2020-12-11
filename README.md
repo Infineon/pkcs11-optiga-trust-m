@@ -34,7 +34,7 @@ Install the build dependendencies for the system:
 
 # Hardware connection between OPTIGA™ Trust M and Raspberry Pi 3 (optional)
 
-This APpNote does support two hardware types:
+This Appnote does support two hardware types:
 
 1. USB Dongle. In this case you just need to plug it into one of available USB slots on your Raspberry Pi board
 2. I2C Connection
