@@ -22,7 +22,7 @@ Install the build dependendencies for the system:
     ```console
     $ sudo apt-get install libcunit1-dev libpthread-stubs0-dev
     ```
-4. Enable the I2C interafce to communicate with OPTIGA™ Trust M:
+4. Enable the I2C interface to communicate with OPTIGA™ Trust M (optional)
     ```console
     $ sudo raspi-config
     ```
