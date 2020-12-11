@@ -32,7 +32,7 @@ Install the build dependendencies for the system:
     * Finish the configuration window.
 
 
-# Hardware connection between OPTIGA™ Trust M and Raspberry Pi 3
+# Hardware connection between OPTIGA™ Trust M and Raspberry Pi 3 (optional)
 
 This APpNote does support two hardware types:
 
