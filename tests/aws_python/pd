@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2024 Infineon Technologies AG
+#
+# SPDX-License-Identifier: MIT
+
+####################
+# Regular non-spy mode
+####################
+export PKCS11_MODULE=liboptigatrust-i2c-linux-pkcs11.so
+
+####################
+# PKCS#11 spy mode
+####################
+#export PKCS11_MODULE=/usr/lib/pkcs11-spy.so
+#export PKCS11SPY=liboptigatrust-i2c-linux-pkcs11.so
+#export OPENSC_DEBUG=9
+#export PKCS11SPY_OUTPUT=pkcs11-spy-aws-generate-cert.log
+
+pkcs11-tool --module $PKCS11_MODULE -v $@
