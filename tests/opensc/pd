@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2024 Infineon Technologies AG
+#
+# SPDX-License-Identifier: MIT
+
+export PKCS11_MODULE=liboptigatrust-i2c-linux-pkcs11.so
+
+#export PKCS11SPY=/home/pi/pkcs11-optiga-trust-m-vgdb/VisualGDB/Debug/pkcs11_trustm.so
+#export PKCS11SPY=liboptigatrust-i2c-linux-pkcs11.so
+#export OPENSC_DEBUG=9
+#export PKCS11SPY_OUTPUT=pkcs11-spy-tool.log
+
+echo ------------------------------------------------------------------------------------
+echo ./pd $@
+echo ------------------------------------------------------------------------------------
+
+pkcs11-tool --module $PKCS11_MODULE -v $@
+
+if [ $? -ne 0 ]; then 
+ echo =================================================================================== 
+ echo ERROR: $@
+ echo =================================================================================== 
+ (exit 1)
+fi

@@ -1,0 +1,9 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: CHANGELOG.md CONTRIBUTING.md tools/coding_style/README.md
+Copyright: 2024 Infineon Technologies AG
+License:  CC-BY-NC-ND-4.0
+
+Files: tests/aws_python/images/* docs/* tests/aws_python/certificates/* tests/opensc/certificates/* docs/schematics/v_1_0/tests/LibFT260-v1.1.2/imports/LibFT260/lib/*
+Copyright: 2024 Infineon Technologies AG
+License:  MIT
