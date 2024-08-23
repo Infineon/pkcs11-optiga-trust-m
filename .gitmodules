@@ -1,4 +1,7 @@
-[submodule "optiga-trust-m"]
-	path = optiga-trust-m
-	url = https://github.com/Infineon/optiga-trust-m
-	branch = development
+# SPDX-FileCopyrightText: 2024 Infineon Technologies AG
+#
+# SPDX-License-Identifier: MIT
+
+[submodule "external/optiga-trust-m"]
+	path = external/optiga-trust-m
+	url = https://github.com/Infineon/optiga-trust-m.git
