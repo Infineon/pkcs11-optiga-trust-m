@@ -92,26 +92,31 @@ void optiga_lib_print_string(const char_t *p_log_string) {
     if (NULL == p_log_string) {
         return;
     }
-
+#ifdef  DEBUG
     Log("%s", p_log_string);
-
+#else
     // lint --e{534} The return value is not used hence not checked*/
-    //pal_logger_write(&logger_console, (const uint8_t *)p_log_string, strlen(p_log_string));
+    pal_logger_write(&logger_console, (const uint8_t *)p_log_string, strlen(p_log_string));
+#endif
 }
 
 void optiga_lib_print_string_with_newline(const char_t *p_log_string) {
-    //uint8_t new_line_characters[2] = {OPTIGA_LOGGER_NEW_LINE_CHAR};
-
+    
+#ifdef  DEBUG
     if (NULL == p_log_string) {
         return;
     }
-
     Log("%s\r\n", p_log_string);
-
+#else
+    uint8_t new_line_characters[2] = {OPTIGA_LOGGER_NEW_LINE_CHAR};
+    if (NULL == p_log_string) {
+        return;
+    }
     // lint --e{534} The return value is not used hence not checked*/
-    //pal_logger_write(&logger_console, (const uint8_t *)p_log_string, strlen(p_log_string));
+    pal_logger_write(&logger_console, (const uint8_t *)p_log_string, strlen(p_log_string));
     // lint --e{534} The return value is not used hence not checked*/
-    //pal_logger_write(&logger_console, new_line_characters, 2);
+    pal_logger_write(&logger_console, new_line_characters, 2);
+#endif
 }
 
 void optiga_lib_print_message(
@@ -119,20 +124,25 @@ void optiga_lib_print_message(
     const char_t *p_log_layer,
     const char_t *p_log_color
 ) {
-    //uint8_t new_line_characters[2] = {OPTIGA_LOGGER_NEW_LINE_CHAR};
-    //char_t color_buffer[400];
+#ifdef  DEBUG
+    if ((NULL == p_log_string) || (NULL == p_log_layer) || (NULL == p_log_color)) {
+        return;
+    }
+    Log("%s%s\r\n", p_log_layer, p_log_string);
+#else    
+    uint8_t new_line_characters[2] = {OPTIGA_LOGGER_NEW_LINE_CHAR};
+    char_t color_buffer[400];
 
     if ((NULL == p_log_string) || (NULL == p_log_layer) || (NULL == p_log_color)) {
         return;
     }
 
-    Log("%s%s\r\n", p_log_layer, p_log_string);
-
-    //OPTIGA_LIB_LOGGER_PRINT_INFO(color_buffer, p_log_string, p_log_layer, p_log_color);
+    OPTIGA_LIB_LOGGER_PRINT_INFO(color_buffer, p_log_string, p_log_layer, p_log_color);
     // lint --e{534} The return value is not used hence not checked*/
-    //pal_logger_write(&logger_console, (const uint8_t *)color_buffer, strlen(color_buffer));
+    pal_logger_write(&logger_console, (const uint8_t *)color_buffer, strlen(color_buffer));
     // lint --e{534} The return value is not used hence not checked*/
-    //pal_logger_write(&logger_console, new_line_characters, 2);
+    pal_logger_write(&logger_console, new_line_characters, 2);
+#endif
 }
 
 void optiga_lib_print_status(
@@ -140,7 +150,7 @@ void optiga_lib_print_status(
     const char_t *p_log_color,
     uint16_t return_value
 ) {
-    // uint8_t new_line_characters[2] = {OPTIGA_LOGGER_NEW_LINE_CHAR};
+    uint8_t new_line_characters[2] = {OPTIGA_LOGGER_NEW_LINE_CHAR};
     uint8_t uint16t_conv_buffer[10] = {0};
     char_t return_value_buffer[20] = {0};
     char_t string_buffer[100] = {0};
@@ -162,21 +172,22 @@ void optiga_lib_print_status(
         optiga_lib_word_to_hex_string(return_value, uint16t_conv_buffer);
         strcat(return_value_buffer, (char_t *)uint16t_conv_buffer);
     }
-
+#ifdef  DEBUG
     Log("%s%s\r\n", string_buffer, return_value_buffer);
-
-    // OPTIGA_LIB_LOGGER_PRINT_INFO(
-    //     color_buffer,
-    //     (char_t *)return_value_buffer,
-    //     string_buffer,
-    //     p_log_color
-    // );
+#else
+    OPTIGA_LIB_LOGGER_PRINT_INFO(
+         color_buffer,
+         (char_t *)return_value_buffer,
+         string_buffer,
+         p_log_color
+     );
 
     // lint --e{534} The return value is not used hence not checked*/
-    //pal_logger_write(&logger_console, (const uint8_t *)color_buffer, strlen(color_buffer));
+    pal_logger_write(&logger_console, (const uint8_t *)color_buffer, strlen(color_buffer));
     // Print new line
     // lint --e{534} The return value is not used hence not checked*/
-    //pal_logger_write(&logger_console, new_line_characters, 2);
+    pal_logger_write(&logger_console, new_line_characters, 2);
+#endif
 }
 
 void optiga_lib_print_array_hex_format(
@@ -184,50 +195,52 @@ void optiga_lib_print_array_hex_format(
     uint16_t length,
     const char_t *p_log_color
 ) {
-    // uint8_t temp_buffer[350];
-    // char_t output_buffer[400];
-    // uint16_t index;
-    // uint16_t temp_length;
-    // char_t new_line_characters[2] = {OPTIGA_LOGGER_NEW_LINE_CHAR};
-    // uint8_t buffer_window = 32;  // Alignment of 16 bytes per line
-
-    // if ((NULL == p_log_string) || (NULL == p_log_color)) {
-    //     return;
-    // }
-
-    // optiga_lib_print_length_of_data(length);
-
-    // //Logging the arrays in chunks of 16 bytes through chaining
-    // for (index = 0; index < length; index += buffer_window) {
-    //     temp_length = buffer_window;
-    //     if ((length - index) < buffer_window) {
-    //         temp_length = length - index;
-    //     }
-
-    //     pal_os_memset(temp_buffer, 0x00, sizeof(temp_buffer));
-    //     pal_os_memset(output_buffer, 0x00, sizeof(output_buffer));
-
-    //     optiga_lib_byte_to_hex_string(
-    //         (uint8_t *)(p_log_string + index),
-    //         temp_buffer,
-    //         temp_length,
-    //         FALSE
-    //     );
-
-    //     OPTIGA_LIB_LOGGER_PRINT_ARRAY(output_buffer, temp_buffer, p_log_color);
-
-    //     // New line characted entered at the end of each segment
-    //     output_buffer[strlen(output_buffer)] = new_line_characters[0];
-    //     output_buffer[strlen(output_buffer) + 1] = new_line_characters[1];
-    //     // lint --e{534} The return value is not used hence not checked*/
-    //     pal_logger_write(
-    //         &logger_console,
-    //         (const uint8_t *)output_buffer,
-    //         strlen(output_buffer) + 2
-    //     );
-    // }
-
+#ifdef DEBUG
     HEXDUMP("", (uint8_t *)p_log_string, length);
+#else
+    uint8_t temp_buffer[350];
+    char_t output_buffer[400];
+    uint16_t index;
+    uint16_t temp_length;
+    char_t new_line_characters[2] = {OPTIGA_LOGGER_NEW_LINE_CHAR};
+    uint8_t buffer_window = 32;  // Alignment of 16 bytes per line
+
+    if ((NULL == p_log_string) || (NULL == p_log_color)) {
+        return;
+    }
+
+    optiga_lib_print_length_of_data(length);
+
+    //Logging the arrays in chunks of 16 bytes through chaining
+    for (index = 0; index < length; index += buffer_window) {
+        temp_length = buffer_window;
+        if ((length - index) < buffer_window) {
+            temp_length = length - index;
+        }
+
+        pal_os_memset(temp_buffer, 0x00, sizeof(temp_buffer));
+        pal_os_memset(output_buffer, 0x00, sizeof(output_buffer));
+
+        optiga_lib_byte_to_hex_string(
+            (uint8_t *)(p_log_string + index),
+            temp_buffer,
+            temp_length,
+            FALSE
+        );
+
+        OPTIGA_LIB_LOGGER_PRINT_ARRAY(output_buffer, temp_buffer, p_log_color);
+
+        // New line characted entered at the end of each segment
+        output_buffer[strlen(output_buffer)] = new_line_characters[0];
+        output_buffer[strlen(output_buffer) + 1] = new_line_characters[1];
+        // lint --e{534} The return value is not used hence not checked*/
+        pal_logger_write(
+            &logger_console,
+            (const uint8_t *)output_buffer,
+            strlen(output_buffer) + 2
+        );
+    }
+#endif
 }
 
 /**

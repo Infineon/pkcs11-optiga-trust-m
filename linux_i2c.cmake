@@ -26,7 +26,7 @@ if(UNIX)
 		message("-----> I2C DEBUG mode")
 		target_compile_definitions(${TARGET_I2C_SHLIB} PRIVATE  -DPAL_OS_HAS_EVENT_INIT -DOPTIGA_LIB_EXTERNAL="${CMAKE_CURRENT_SOURCE_DIR}/config/optiga_trust_m_config.h" -DDEBUG -DOPTIGA_LIB_ENABLE_LOGGING -DHAS_LIBGPIOD)
 	else()
-		target_compile_definitions(${TARGET_I2C_SHLIB} PRIVATE  -DPAL_OS_HAS_EVENT_INIT -DOPTIGA_LIB_EXTERNAL="${CMAKE_CURRENT_SOURCE_DIR}/config/optiga_trust_m_config.h" -DDEBUG -DHAS_LIBGPIOD)
+		target_compile_definitions(${TARGET_I2C_SHLIB} PRIVATE  -DPAL_OS_HAS_EVENT_INIT -DOPTIGA_LIB_EXTERNAL="${CMAKE_CURRENT_SOURCE_DIR}/config/optiga_trust_m_config.h" -DHAS_LIBGPIOD)
 	endif()
 	
 	target_link_libraries(${TARGET_I2C_SHLIB} rt crypto pthread gpiod)
