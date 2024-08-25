@@ -7,7 +7,10 @@
 
 ### SLOT 0
 chmod +x pd
-
+if [ ! -d certificates ]
+then
+mkdir certificates
+fi
 ./pd --slot 0 --label Cert --read-object --type cert --output-file certificates/Slot0CertRead.der
 
 xxd certificates/Slot0CertRead.der

@@ -32,6 +32,14 @@ export PKCS11_MODULE=liboptigatrust-i2c-linux-pkcs11.so
 #~ pkcs11-tool --module $PKCS11_MODULE -v $@
 #######################################################################################
 
+if [ -e $AWS_CERT_PATH ]
+then
+    echo "AMZ CA cert ok"
+else
+    echo "Fetch AMZ CA cert from url"
+    wget -P certificates https://www.amazontrust.com/repository/AmazonRootCA1.pem
+fi
+
 python3 connect_aws.py \
 --pcks11lib $PKCS11_MODULE \
 --slot 1 \

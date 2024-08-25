@@ -11,6 +11,21 @@ CA_CERT="certificates/OPTIGA_Trust_M_Infineon_Test_CA.pem"
 chmod +x pd
 
 echo "-----> "
+if [ -e $CA_KEY ]
+then
+	echo "TEST CA key ok"
+else
+	if [ ! -d certificates ]
+	then
+	mkdir certificates
+	fi
+	echo "Generate Test CA Key"
+	openssl ecparam -out $CA_KEY -name prime256v1 -genkey
+	echo "Generate Test CA Certificate"
+	openssl req -new -x509 -days 3650 -key $CA_KEY -subj "/CN=Infineon OPTIGA(TM) Trust M Test CA/O=Infineon Technologies AG/OU=OPTIGA(TM)/C=DE" -out $CA_CERT
+fi
+
+
 set -e
 
 echo "-----> Generate Dummy ECC Private Key"
