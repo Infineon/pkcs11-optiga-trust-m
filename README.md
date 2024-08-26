@@ -43,9 +43,9 @@ sudo raspi-config
 
 ## Hardware connections between OPTIGA™ Trust M and Raspberry Pi
 
-Two hardware connection types:
+Hardware connection:
 
-1. **I2C Connection**
+**I2C Connection**
     Below table shows the I2C connection between the [OPTIGA™ Trust M](https://www.infineon.com/cms/en/product/evaluation-boards/s2go-security-optiga-m/) and Raspberry Pi(RPI).
 
 | No       			| Description		| RPI Pin # | Pin Description |
