@@ -25,7 +25,7 @@ This repository tests runs on a Raspberry PI. The Raspberry PI used is running o
 
 To prepare and install Raspberry Pi OS in a raspberry PI, please refer to the official documentation [here](https://www.raspberrypi.com/documentation/computers/getting-started.html).
 
-This tool was tested on a Raspberry Pi 4 Model B with with Raspberry Pi OS Debian Bookworm release [2024-03-15](https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-2024-03-15/).
+This tool was tested on a Raspberry Pi 4 Model B with Raspberry Pi OS Debian Bookworm release [2024-03-15](https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-2024-03-15/).
 
 ## Setting up the Linux environment on Raspberry Pi
 
