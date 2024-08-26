@@ -13,7 +13,6 @@ SPDX-License-Identifier: MIT
   - [Hardware connections between OPTIGA™ Trust M and Raspberry Pi](#hardware-connections-between-optiga-trust-m-and-raspberry-pi)
 - [Building System Test Project for PKCS#11](#building-system-test-project-for-pkcs11)
   - [Get the latest version of PKCS#11 implementation with OPTIGA™ Trust M](#get-the-latest-version-of-pkcs11-implementation-with-optiga-trust-m)
-  - [Submodule MbedTLS](#submodule-mbedtls)
   - [Build PKCS#11 library with OPTIGA™ Trust M](#build-pkcs11-library-with-optiga-trust-m)
 
 # PKCS#11 Interface implementation for </br>OPTIGA™ Trust M Host library for C
@@ -22,11 +21,11 @@ PKCS#11 is a Public-Key Cryptography Standard that defines a standard method t
 
 # Preparing the Environment
 
-This repository tests runs on a Raspberry PI. The Raspberry PI used is running on Raspbian OS.
+This repository tests runs on a Raspberry PI. The Raspberry PI used is running on Raspberry Pi OS.
 
-To prepare and install Raspbian OS in a raspberry PI, please refer to the official documentation [here](https://www.raspberrypi.com/documentation/computers/getting-started.html).
+To prepare and install Raspberry Pi OS in a raspberry PI, please refer to the official documentation [here](https://www.raspberrypi.com/documentation/computers/getting-started.html).
 
-This tool was tested on a Raspberry Pi 4 Model B with with Raspberry Pi OS Debian Bookworm release [2024-03-15](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2024-03-15/).
+This tool was tested on a Raspberry Pi 4 Model B with with Raspberry Pi OS Debian Bookworm release [2024-03-15](https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-2024-03-15/).
 
 ## Setting up the Linux environment on Raspberry Pi
 
