@@ -27,8 +27,6 @@ set(TRUSTM_CORE_SRCS
     ${TRUSTM_PATH}/src/util/optiga_util.c
     ${TRUSTM_PATH}/src/cmd/optiga_cmd.c
     ${TRUSTM_PATH}/src/common/optiga_lib_common.c
-    #~ ${TRUSTM_PATH}/src/common/log.c
-    #${TRUSTM_PATH}/src/common/optiga_lib_logger.c
     ${TRUSTM_PATH}/src/comms/ifx_i2c/ifx_i2c.c
     ${TRUSTM_PATH}/src/comms/ifx_i2c/ifx_i2c_config.c
     ${TRUSTM_PATH}/src/comms/ifx_i2c/ifx_i2c_data_link_layer.c
@@ -45,7 +43,7 @@ set(TRUSTM_CORE_SRCS
 
 )
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/linux_libusb.cmake)
+#~ include(${CMAKE_CURRENT_SOURCE_DIR}/linux_libusb.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/linux_i2c.cmake)
 
 

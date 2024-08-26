@@ -22,9 +22,11 @@ PKCS#11 is a Public-Key Cryptography Standard that defines a standard method t
 
 # Preparing the Environment
 
-This repository tests runs on a Raspberry PI. The rapsberry PI used is running on Raspbian OS.
+This repository tests runs on a Raspberry PI. The Raspberry PI used is running on Raspbian OS.
 
-To prepare and install Raspbian OS in a raspberry PI, please refer to the official doumentation [here](https://www.raspberrypi.com/documentation/computers/getting-started.html).
+To prepare and install Raspbian OS in a raspberry PI, please refer to the official documentation [here](https://www.raspberrypi.com/documentation/computers/getting-started.html).
+
+This tool was tested on a Raspberry Pi 4 Model B with with Raspberry Pi OS Debian Bookworm release [2024-03-15](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2024-03-15/).
 
 ## Setting up the Linux environment on Raspberry Pi
 
@@ -42,7 +44,7 @@ sudo raspi-config
 
 ## Hardware connections between OPTIGA™ Trust M and Raspberry Pi
 
-Two hardware connexions types:
+Two hardware connection types:
 
 1. **I2C Connection**
     Below table shows the I2C connection between the [OPTIGA™ Trust M](https://www.infineon.com/cms/en/product/evaluation-boards/s2go-security-optiga-m/) and Raspberry Pi(RPI).
@@ -54,26 +56,12 @@ Two hardware connexions types:
 | 3 | VCC   | 17 | 3V3 |
 | 4 | GND   | 9 | GND    |
 
-2. **[USB Dongle](./docs/schematics/V_1_1)**. In this case you just need to plug it into one of available USB slots on your Raspberry Pi board
-
 
 # Building System Test Project for PKCS#11
 
 ## Get the latest version of PKCS#11 implementation with OPTIGA™ Trust M
 
 	git clone --recurse-submodules https://github.com/Infineon/pkcs11-optiga-trust-m
-
-## Submodule MbedTLS
-
-MbedTLS submodule needs to be clonned manually.
-
-please navigate to the folder external/optiga-trust-m and run git submodule command as shown here :
-
-```
-cd external/optiga-trust-m
-git submodule update --init
-cd ../..
-```
 
 ## Build PKCS#11 library with OPTIGA™ Trust M
 
