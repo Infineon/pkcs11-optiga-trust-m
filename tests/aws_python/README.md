@@ -6,8 +6,6 @@ SPDX-License-Identifier: MIT
 
 # OPTIGA™ Trust M Linux Setup Guide for AWS IOT Core
 
-
-
 ## <a name="AboutThisDocument"></a>About this document
 
 ### <a name="Scopeandpurpose"></a>Scope and purpose 
@@ -29,8 +27,6 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
     - [Examples used in previous chapter:](#examples-used-in-previous-chapter)
   - [Connect To AWS IoT](#connect-to-aws-iot)
 
-  
-
 ## <a name="prerequisites"></a>Prerequisites
 
 ### <a name="SetupRPI"></a>Setup Raspberry Pi
@@ -39,9 +35,25 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ### <a name="AWSPythonPKCS11clientconfiguration"></a>AWS Python PKCS#11 client configuration
 
+The AWS IoT Core Client ID and Device Data Endpoint need to be configured in the MQTT client software shown below, for example:
+
 - OPTIGA™ Trust M thing Client ID: arn:aws:iot:us-west-2:767398033664:thing/Rpi-TrustM-PKCS11
 
 - Device Data Endpoint: a2kfkheds2p7dx-ats.iot.us-west-2.amazonaws.com
+
+See [a0_connect.sh](a0_connect.sh):
+```bash
+#######################################################################################
+# AWS IoT configuration
+#######################################################################################
+export DEVICE_CERT_PATH=certificates/mycert0.pem
+
+export AWS_CERT_PATH=certificates/AmazonRootCA1.pem
+
+export IOT_CORE_ENDPOINT=a2kfkheds2p7dx-ats.iot.us-west-2.amazonaws.com
+
+export CLIENT_ID=arn:aws:iot:us-west-2:767398033664:thing/Rpi-TrustM-PKCS11
+```
 
 
 ### <a name="installingawspythonlibrary"></a>Installing AWS Python Library
@@ -49,20 +61,20 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 - Install AWS Python Library:
 
-  ```
+  ```bash
   python3 -m pip install awsiotsdk 
   ```
 
   *** Note: if you are running Raspberry Pi OS Bookworm or newer and is facing Error "error: externally-managed-environment", run***
 
-  ```
+  ```bash
   sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
   python3 -m pip install awsiotsdk 
   ```
 
 - Run "read_cert_slot0.sh" script to read certificate for slot 0
 
-  ``` 
+  ``` bash
   chmod +x read_cert_slot0.sh
   ./read_cert_slot0.sh
   ```
@@ -72,7 +84,7 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 - Run "generate_cert_slot1.sh" script to generate certificate for slot 1
 
-  ```
+  ```bash
   chmod +x generate_cert_slot1.sh
   ./generate_cert_slot1.sh 
   ```
@@ -88,13 +100,13 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ​	![Sign In webpage](./images/awsamazon_webpage.png "Sign In Button")
 
-[^Figure 1]:AWS web page
+[^Figure 2]:AWS web page
 
 - Select Root user and create new account (follow the steps)
 
 ![](./images/Root_User.png)
 
-[^Figure 2]: AWS Sign in Console
+[^Figure 3]: AWS Sign in Console
 
 ### <a name="Setting up AWS IOT configuration"></a>Setting up AWS IOT configuration
 
@@ -102,41 +114,41 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/iotcoreapp.png "IoT Core application")
 
-[^Figure 3]: AWS Console Home
+[^Figure 4]: AWS Console Home
 
 - Expand Manage and click on "Things"
 
 ![](./images/manage_things.png)
 
-[^Figure 4]:AWS IoT sidebar menu
+[^Figure 5]:AWS IoT sidebar menu
 
 - Click on "Create Things" - Select "Create single thing"
 
 
 ![](./images/pkcs11_create_thing_1.png)
 
-[^Figure 5]:Create things menu
+[^Figure 6]:Create things menu
 
 - Name your thing and keep the default "No shadow selection", then click  "Next"
 
 
 ![](./images/pkcs11_create_thing_2.png)
 
-[^Figure 6]:Thing properties and Shadow selection
+[^Figure 7]:Thing properties and Shadow selection
 
 - Select "Skip creating a certificate at this time", then click "Create Thing"
 
 
 ![](./images/pkcs11_create_thing_3.png)
 
-[^Figure 7]: Thing certificate configuration
+[^Figure 8]: Thing certificate configuration
 
 - Below is the example Things created for the OPTIGA™ Trust M kits
 
 
 ![](./images/thing_example.png)
 
-[^Figure 8]: Thing created example
+[^Figure 9]: Thing created example
 
 - Upload and Register the Device Certificate extracted from the OPTIGA™ Trust M Kit. The Device Certificate should be saved in a .pem file
 
@@ -144,11 +156,11 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/pkcs11_create_cert_1.png)
 
-[^Figure 9]: Certificate menu
+[^Figure 10]: Certificate menu
 
 ![](./images/pkcs11_create_cert_2.png)
 
-[^Figure 10]: Register certificate menu
+[^Figure 11]: Register certificate menu
 
 - Choose “CA is not registered with AWS IoT” and click on upload.
 
@@ -157,7 +169,7 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/pkcs11_create_cert_3.png)
 
-[^Figure 11]:Certificate selection "mycert.pem" from "generate_cert.sh"
+[^Figure 12]:Certificate selection "mycert.pem" from "generate_cert.sh"
 
 - Activate the Registered Device Certificate.
 
@@ -166,20 +178,20 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/pkcs11_create_cert_4.png)
 
-[^Figure 12]:Activated certificate
+[^Figure 13]:Activated certificate
 
 - Successful registered certificate will be added in the list of certificates as shown below. 
 
 ![](./images/registered_cert.png)
 
-[^Figure 13]: Certificate list 
+[^Figure 14]: Certificate list 
 
 - To determine which is the Device Certificate, select it and open it. (It should contain Infineon Technologies as the issuer.)
 - ***note this should be reflected on both registered certificates***
 
 ![](./images/cert_details.png)
 
-[^Figure 14]: Certificate details of device 
+[^Figure 15]: Certificate details of device 
 
 - Attach the certificate to a Thing (OPTIGA™ Trust M Kit). 
 
@@ -190,14 +202,14 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/pkcs11_attach_cert_1.png)
 
-[^Figure 15]: Attaching certificate to things
+[^Figure 16]: Attaching certificate to things
 
 - Choose a thing for OPTIGA™ Trust M and select “Attach to thing” as shown below.
 
 
 ![](./images/pkcs11_attach_cert_2.png)
 
-[^Figure 16 ]: Choosing thing example
+[^Figure 17 ]: Choosing thing example
 
 - Create New Policy for the Thing (OPTIGA™ Trust M Kit).
 
@@ -206,7 +218,7 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/pkcs11_create_policy_1.png)
 
-[^Figure 17]: Create policy example
+[^Figure 18]: Create policy example
 
 - Enter Policy name (ex. AllAllowedPolicy). 
 
@@ -215,24 +227,24 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/pkcs11_create_policy_2.png)
 
-[^Figure 18a]:Create policy with Builder menu
+[^Figure 19a]:Create policy with Builder menu
 
 ![](./images/pkcs11_create_policy_3.png)
 
-[^Figure 18b]: Create policy with JSON menu
+[^Figure 19b]: Create policy with JSON menu
 
 - Click on Create.
 
 
 ![](./images/policy.png)
 
-[^Figure 19]: Created policy
+[^Figure 20]: Created policy
 
 - New Policy created will be displayed as shown below.
 
 ![](./images/policy_created.png)
 
-[^Figure 20]: Policy list
+[^Figure 21]: Policy list
 
 - Attach Policy to the Device Certificate.
 
@@ -243,27 +255,27 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/pkcs11_attach_cert_3.png)
 
-[^Figure 21]: Attaching policy example
+[^Figure 22]: Attaching policy example
 
 - Select the Policy and choose Attach policies.
 
 ![](./images/pkcs11_attach_cert_4.png)
 
-[^Figure 22]: Choosing policy
+[^Figure 23]: Choosing policy
 
 - Successful New Policy attached shown below.
 
 ![](./images/successful_policy.png)
 
-[^Figure 23]: Successful attached policy example
+[^Figure 24]: Successful attached policy example
 
 - Broker IOT Endpoint. Click on Settings. Device data endpoint shown below.
 
 ![](./images/pkcs11_endpoint.png)
 
-[^Figure 24]: Endpoint example
+[^Figure 25]: Endpoint example
 
-- This endpoint needs to be copied in the MQTT Client 
+- This endpoint needs to be copied in the MQTT Client as in [AWS Python PKCS#11 client configuration](#aws-python-pkcs11-client-configuration) 
 
 ### Examples used in previous chapter:
 
@@ -279,22 +291,20 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
     Run "a0_connect.sh" to connect to connect to AWS IoT as follow
 
-    ```
+    ```bash
     chmod +x a0_connect.sh
     ./a0_connect.sh
     ```
 
-
-
 ![](./images/a0_connect_output.png)
 
-[^Figure 25]: a0_connect.sh output
+[^Figure 26]: a0_connect.sh output
 
 - Connect to AWS IoT using slot 1
 
     Run "a1_connect.sh" to connect to connect to AWS IoT as follow
 
-    ```
+    ```bash
     chmod +x a1_connect.sh
     ./a1_connect.sh
     ```
@@ -302,4 +312,4 @@ AWS IoT core makes use of X.509 certificates to authenticate client or device co
 
 ![](./images/a1_connect_output.png)
 
-[^Figure 26]: a1_connect.sh output
+[^Figure 27]: a1_connect.sh output
