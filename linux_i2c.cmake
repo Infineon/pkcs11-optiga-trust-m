@@ -17,7 +17,7 @@ if(UNIX)
 		${TRUSTM_PATH}/extras/pal/linux/pal_os_timer.c
         ${TRUSTM_PATH}/extras/pal/linux/pal_os_memory.c
         ${TRUSTM_PATH}/extras/pal/linux/pal_shared_mutex.c  
-        ${TRUSTM_PATH}/extras/pal/pal_crypt_openssl.c
+        ${TRUSTM_PATH}/extras/pal/pal_crypt_mbedtls.c
 	)
 	set(TRUSTM_I2C_INC ${TRUSTM_PATH}/extras/pal/linux/include)
 	add_library(${TARGET_I2C_SHLIB} SHARED ${TRUSTM_CORE_SRCS} ${TRUSTM_I2C_SRCS})

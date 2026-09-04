@@ -1,13 +1,17 @@
 openssl_conf = openssl_init
 
 [openssl_init]
-engines = engine_section
+providers = provider_sect
 
-[engine_section]
-pkcs11 = pkcs11_section
+[provider_sect]
+default = default_sect
+pkcs11 = pkcs11_sect
 
-[pkcs11_section]
-engine_id = pkcs11
-dynamic_path = /usr/lib/aarch64-linux-gnu/engines-3/libpkcs11.so
-MODULE_PATH = /lib/liboptigatrust-i2c-linux-pkcs11.so
-init = 0
+[default_sect]
+activate = 1
+
+[pkcs11_sect]
+module = /usr/lib/aarch64-linux-gnu/ossl-modules/pkcs11.so
+pkcs11-module-path = /usr/lib/liboptigatrust-i2c-linux-pkcs11.so
+pkcs11-module-token-pin = 0000
+activate = 1

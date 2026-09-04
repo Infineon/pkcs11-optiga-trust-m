@@ -18,6 +18,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${TRUSTM_PATH}/include/comms)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${TRUSTM_PATH}/include/ifx_i2c)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${TRUSTM_PATH}/include/pal)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${TRUSTM_PATH}/external/mbedtls/include)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/${TRUSTM_PATH}/external/mbedtls/library MBEDTLS_FILES)
 
 include_directories(/usr/local/openssl/include)
 # Add sources for Trust M Core and Platform Abstraction Layer
@@ -40,7 +41,7 @@ set(TRUSTM_CORE_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/examples/utilities/pkcs11_trustm.c
     ${CMAKE_CURRENT_SOURCE_DIR}/examples/utilities/ecdsa_utils.c
     ${CMAKE_CURRENT_SOURCE_DIR}/examples/utilities/optiga_lib_logger.c
-
+    ${MBEDTLS_FILES}
 )
 
 #~ include(${CMAKE_CURRENT_SOURCE_DIR}/linux_libusb.cmake)

@@ -40,30 +40,40 @@ echo "01234567890123456789012345678901234567890123456789" > test.txt
 xxd test.sha
 
 if [[ $OPENSSL_VERSION == 3.* ]]; then
-	echo "======>Read out the Public Key for Token4"	
+	echo -e "\n======>Read out the Public Key for Token4"	
 	OPENSSL_CONF=openssl3_pkcs11.cnf openssl pkey -engine pkcs11 -in "pkcs11:token=Token4" -pubin -pubout -text -inform engine
 
-	echo "======>Generate CSR"
+	echo -e "\n======>Generate CSR"
 	OPENSSL_CONF=openssl3_pkcs11.cnf openssl req -new -engine pkcs11 -key "pkcs11:token=Token4" -keyform engine -out new_device.csr -subj "/CN=TrustM"
+	cat new_device.csr
 
-	echo "======>RSA sign"	
+	echo -e "\n======>RSA sign"	
 	OPENSSL_CONF=openssl3_pkcs11.cnf openssl dgst -engine pkcs11 -sign "pkcs11:token=Token4" -keyform engine -out Slot4prvkey.sig -sha256 test.txt
+	echo -n "The text is : " 
+	cat test.txt
+	echo "The singature is : "
+	xxd -p Slot4prvkey.sig
 
-	echo "======>Verify signature"	
+	echo -e "\n======>Verify signature"	
 	OPENSSL_CONF=openssl3_pkcs11.cnf openssl dgst -engine pkcs11 -verify "pkcs11:token=Token4" -keyform engine -signature Slot4prvkey.sig -sha256 test.txt
 	
 elif [[ $OPENSSL_VERSION == 1.1.* ]]; then
 
-	echo "======>Read out the Public Key for Token4"	
+	echo -e "\n======>Read out the Public Key for Token4"	
 	OPENSSL_CONF=openssl1_pkcs11.cnf openssl pkey -engine pkcs11 -in "pkcs11:token=Token4" -pubin -pubout -text -inform engine
 
-	echo "======>Generate CSR"
+	echo -e "\n======>Generate CSR"
 	OPENSSL_CONF=openssl1_pkcs11.cnf openssl req -new -engine pkcs11 -key "pkcs11:token=Token4" -keyform engine -out new_device.csr -subj "/CN=TrustM"
+	cat new_device.csr
 
-	echo "======>RSA sign"	
+	echo -e "\n======>RSA sign"	
 	OPENSSL_CONF=openssl1_pkcs11.cnf openssl dgst -engine pkcs11 -sign "pkcs11:token=Token4" -keyform engine -out Slot4prvkey.sig -sha256 test.txt
+	echo -n "The text is : " 
+	cat test.txt
+	echo "The singature is : "
+	xxd -p Slot4prvkey.sig
 
-	echo "======>Verify signature"	
+	echo -e "\n======>Verify signature"	
 	OPENSSL_CONF=openssl1_pkcs11.cnf openssl dgst -engine pkcs11 -verify "pkcs11:token=Token4" -keyform engine -signature Slot4prvkey.sig -sha256 test.txt
 else
     echo "Unsupported OpenSSL version: $OPENSSL_VERSION"

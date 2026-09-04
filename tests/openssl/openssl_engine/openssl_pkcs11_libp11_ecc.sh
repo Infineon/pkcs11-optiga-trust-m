@@ -33,7 +33,6 @@ echo "======>Generate ECC key pair"
 ./pd --slot 1 --keypairgen --key-type EC:secp256r1
 ./pd --slot 1 --label PubKey --read-object --type data --output-file Token1PubKey.der
 openssl ec -pubin -inform DER -in Token1PubKey.der -out Token1PubKey.pem
-xxd Token1PubKey.pem
 
 echo "======>Hash data"	
 echo "01234567890123456789012345678901234567890123456789" > test.txt	
