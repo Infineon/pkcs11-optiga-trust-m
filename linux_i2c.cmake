@@ -28,7 +28,15 @@ if(UNIX)
 	else()
 		target_compile_definitions(${TARGET_I2C_SHLIB} PRIVATE  -DPAL_OS_HAS_EVENT_INIT -DOPTIGA_LIB_EXTERNAL="${CMAKE_CURRENT_SOURCE_DIR}/config/optiga_trust_m_config.h" -DHAS_LIBGPIOD)
 	endif()
-	
+	execute_process(
+		COMMAND bash -c "pkg-config --modversion libgpiod 2>/dev/null | cut -c1"
+		OUTPUT_VARIABLE GPIOD_VERSION
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+	)
+	message("The GPIOD library version is ${GPIOD_VERSION}")
+	if(GPIOD_VERSION STREQUAL "1")
+		target_compile_definitions(${TARGET_I2C_SHLIB} PRIVATE -DLIBGPIOD_V1)
+	endif()
 	target_link_libraries(${TARGET_I2C_SHLIB} rt crypto pthread gpiod)
 	set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
 	set_target_properties( ${TARGET_I2C_SHLIB}
